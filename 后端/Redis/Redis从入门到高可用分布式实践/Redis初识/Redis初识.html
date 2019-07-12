@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Redis初识 | 吃饭睡觉打豆豆</title>
+    <meta name="description" content="吃饭睡觉打豆豆的个人主页">
+    <link rel="icon" href="/vuepressblog/images/photo.jpg">
+  <link rel="manifest" href="/vuepressblog/images/photo.jpg">
+  <link rel="apple-touch-icon" href="/vuepressblog/images/photo.jpg">
+  <meta http-quiv="pragma" cotent="no-cache">
+  <meta http-quiv="pragma" cotent="no-cache,must-revalidate">
+  <meta http-quiv="expires" cotent="0">
+    
+    <link rel="preload" href="/vuepressblog/assets/css/0.styles.9ab1e67f.css" as="style"><link rel="preload" href="/vuepressblog/assets/js/app.c1dcb57d.js" as="script"><link rel="preload" href="/vuepressblog/assets/js/2.faab20df.js" as="script"><link rel="preload" href="/vuepressblog/assets/js/5.1ca22897.js" as="script"><link rel="prefetch" href="/vuepressblog/assets/js/10.22fb069c.js"><link rel="prefetch" href="/vuepressblog/assets/js/11.1c8ac597.js"><link rel="prefetch" href="/vuepressblog/assets/js/12.54b06720.js"><link rel="prefetch" href="/vuepressblog/assets/js/13.4aeff1b0.js"><link rel="prefetch" href="/vuepressblog/assets/js/14.69d0fd61.js"><link rel="prefetch" href="/vuepressblog/assets/js/15.85a6b690.js"><link rel="prefetch" href="/vuepressblog/assets/js/16.0a46c3e0.js"><link rel="prefetch" href="/vuepressblog/assets/js/17.6a6a9d22.js"><link rel="prefetch" href="/vuepressblog/assets/js/18.b7304818.js"><link rel="prefetch" href="/vuepressblog/assets/js/19.0c5bdab6.js"><link rel="prefetch" href="/vuepressblog/assets/js/20.08870fa4.js"><link rel="prefetch" href="/vuepressblog/assets/js/21.0e9e2c41.js"><link rel="prefetch" href="/vuepressblog/assets/js/22.fa2b9545.js"><link rel="prefetch" href="/vuepressblog/assets/js/3.c34e27a7.js"><link rel="prefetch" href="/vuepressblog/assets/js/4.251372dd.js"><link rel="prefetch" href="/vuepressblog/assets/js/6.19fb5042.js"><link rel="prefetch" href="/vuepressblog/assets/js/7.b68caabf.js"><link rel="prefetch" href="/vuepressblog/assets/js/8.ba0e07ee.js"><link rel="prefetch" href="/vuepressblog/assets/js/9.e25745ed.js">
+    <link rel="stylesheet" href="/vuepressblog/assets/css/0.styles.9ab1e67f.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/vuepressblog/" class="home-link router-link-active"><!----> <span class="site-name">吃饭睡觉打豆豆</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/vuepressblog/" class="nav-link">主页</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">后端</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>Java</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/vuepressblog/后端/Java/JavsSE/" class="nav-link">JavaSE</a></li><li class="dropdown-subitem"><a href="/vuepressblog/后端/Java/JavsEE/" class="nav-link">JavaEE</a></li></ul></li><li class="dropdown-item"><h4>Redis</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/vuepressblog/后端/Redis/Redis从入门到高可用分布式实践/Redis课程目录.html" class="nav-link">Redis从入门到高可用分布式实践</a></li><li class="dropdown-subitem"><a href="/vuepressblog/后端/Java/JavsEE/" class="nav-link">JavaEE</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">数据结构与算法</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vuepressblog/数据结构与算法/数据结构不难/" class="nav-link">数据结构不难</a></li><li class="dropdown-item"><!----> <a href="/vuepressblog/数据结构与算法/算法很美/" class="nav-link">算法很美</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">大数据</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vuepressblog/前端/HTML/" class="nav-link">Hadoop</a></li><li class="dropdown-item"><!----> <a href="/vuepressblog/前端/CSS/" class="nav-link">CSS</a></li><li class="dropdown-item"><!----> <a href="/vuepressblog/前端/JavaScript/" class="nav-link">JavaScript</a></li><li class="dropdown-item"><!----> <a href="/vuepressblog/前端/Vue/" class="nav-link">Vue</a></li></ul></div></div> <a href="https://github.com/DYX884877791/DYX884877791.github.io" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/vuepressblog/" class="nav-link">主页</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">后端</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>Java</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/vuepressblog/后端/Java/JavsSE/" class="nav-link">JavaSE</a></li><li class="dropdown-subitem"><a href="/vuepressblog/后端/Java/JavsEE/" class="nav-link">JavaEE</a></li></ul></li><li class="dropdown-item"><h4>Redis</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/vuepressblog/后端/Redis/Redis从入门到高可用分布式实践/Redis课程目录.html" class="nav-link">Redis从入门到高可用分布式实践</a></li><li class="dropdown-subitem"><a href="/vuepressblog/后端/Java/JavsEE/" class="nav-link">JavaEE</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">数据结构与算法</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vuepressblog/数据结构与算法/数据结构不难/" class="nav-link">数据结构不难</a></li><li class="dropdown-item"><!----> <a href="/vuepressblog/数据结构与算法/算法很美/" class="nav-link">算法很美</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">大数据</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vuepressblog/前端/HTML/" class="nav-link">Hadoop</a></li><li class="dropdown-item"><!----> <a href="/vuepressblog/前端/CSS/" class="nav-link">CSS</a></li><li class="dropdown-item"><!----> <a href="/vuepressblog/前端/JavaScript/" class="nav-link">JavaScript</a></li><li class="dropdown-item"><!----> <a href="/vuepressblog/前端/Vue/" class="nav-link">Vue</a></li></ul></div></div> <a href="https://github.com/DYX884877791/DYX884877791.github.io" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Redis从入门到高可用分布式实践</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vuepressblog/" class="sidebar-link">回到主页</a></li><li><a href="/vuepressblog/后端/Redis/Redis从入门到高可用分布式实践/Redis初识/Redis初识.html" class="active sidebar-link">Redis初识</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vuepressblog/后端/Redis/Redis从入门到高可用分布式实践/Redis初识/Redis初识.html#redis是什么？" class="sidebar-link">Redis是什么？</a></li><li class="sidebar-sub-header"><a href="/vuepressblog/后端/Redis/Redis从入门到高可用分布式实践/Redis初识/Redis初识.html#redis特性：" class="sidebar-link">Redis特性：</a></li><li class="sidebar-sub-header"><a href="/vuepressblog/后端/Redis/Redis从入门到高可用分布式实践/Redis初识/Redis初识.html#redis的典型应用场景" class="sidebar-link">Redis的典型应用场景</a></li><li class="sidebar-sub-header"><a href="/vuepressblog/后端/Redis/Redis从入门到高可用分布式实践/Redis初识/Redis初识.html#redis的安装" class="sidebar-link">Redis的安装</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vuepressblog/后端/Redis/Redis从入门到高可用分布式实践/Redis初识/Redis初识.html#下载并安装" class="sidebar-link">下载并安装</a></li><li class="sidebar-sub-header"><a href="/vuepressblog/后端/Redis/Redis从入门到高可用分布式实践/Redis初识/Redis初识.html#可执行文件说明" class="sidebar-link">可执行文件说明</a></li><li class="sidebar-sub-header"><a href="/vuepressblog/后端/Redis/Redis从入门到高可用分布式实践/Redis初识/Redis初识.html#三种启动方式" class="sidebar-link">三种启动方式</a></li><li class="sidebar-sub-header"><a href="/vuepressblog/后端/Redis/Redis从入门到高可用分布式实践/Redis初识/Redis初识.html#三种启动方式的比较" class="sidebar-link">三种启动方式的比较</a></li><li class="sidebar-sub-header"><a href="/vuepressblog/后端/Redis/Redis从入门到高可用分布式实践/Redis初识/Redis初识.html#停止redis" class="sidebar-link">停止redis</a></li></ul></li><li class="sidebar-sub-header"><a href="/vuepressblog/后端/Redis/Redis从入门到高可用分布式实践/Redis初识/Redis初识.html#redis客户端及常用配置" class="sidebar-link">Redis客户端及常用配置</a></li></ul></li><li><a href="/vuepressblog/后端/Redis/Redis从入门到高可用分布式实践/API的理解和使用/API的理解和使用.html" class="sidebar-link">API的理解和使用</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vuepressblog/后端/Redis/Redis从入门到高可用分布式实践/API的理解和使用/API的理解和使用.html#通用命令" class="sidebar-link">通用命令</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vuepressblog/后端/Redis/Redis从入门到高可用分布式实践/API的理解和使用/API的理解和使用.html#全局命令" class="sidebar-link">全局命令</a></li><li class="sidebar-sub-header"><a href="/vuepressblog/后端/Redis/Redis从入门到高可用分布式实践/API的理解和使用/API的理解和使用.html#数据结构与内部编码" class="sidebar-link">数据结构与内部编码</a></li><li class="sidebar-sub-header"><a href="/vuepressblog/后端/Redis/Redis从入门到高可用分布式实践/API的理解和使用/API的理解和使用.html#单线程架构" class="sidebar-link">单线程架构</a></li></ul></li><li class="sidebar-sub-header"><a href="/vuepressblog/后端/Redis/Redis从入门到高可用分布式实践/API的理解和使用/API的理解和使用.html#五种主要的数据结构" class="sidebar-link">五种主要的数据结构</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vuepressblog/后端/Redis/Redis从入门到高可用分布式实践/API的理解和使用/API的理解和使用.html#字符串" class="sidebar-link">字符串</a></li><li class="sidebar-sub-header"><a href="/vuepressblog/后端/Redis/Redis从入门到高可用分布式实践/API的理解和使用/API的理解和使用.html#哈希" class="sidebar-link">哈希</a></li><li class="sidebar-sub-header"><a href="/vuepressblog/后端/Redis/Redis从入门到高可用分布式实践/API的理解和使用/API的理解和使用.html#列表" class="sidebar-link">列表</a></li><li class="sidebar-sub-header"><a href="/vuepressblog/后端/Redis/Redis从入门到高可用分布式实践/API的理解和使用/API的理解和使用.html#集合" class="sidebar-link">集合</a></li><li class="sidebar-sub-header"><a href="/vuepressblog/后端/Redis/Redis从入门到高可用分布式实践/API的理解和使用/API的理解和使用.html#有序集合" class="sidebar-link">有序集合</a></li></ul></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="redis初识"><a href="#redis初识" aria-hidden="true" class="header-anchor">#</a> Redis初识</h1> <h2 id="redis是什么？"><a href="#redis是什么？" aria-hidden="true" class="header-anchor">#</a> Redis是什么？</h2> <p>一个开源的使用ANSI C语言编写（Salvatore Sanfilippo）、遵守BSD协议、支持网络、可基于内存亦可持久化的日志型、高性能的Key-Value存储服务系统</p> <h2 id="redis特性："><a href="#redis特性：" aria-hidden="true" class="header-anchor">#</a> Redis特性：</h2> <ul><li>速度快 - Redis能读的速度是110000次/s,写的速度是81000次/s。
+<ul><li>c语言实现，距离系统底层更近</li> <li>数据都在内存中</li> <li>单线程，避免线程切换开销以及多线程的竞争问题</li> <li>采用epoll模型，非阻塞I/O，不在网络上浪费时间</li></ul></li> <li>丰富的数据类型 – Redis支持String（字符串）、List（列表）、Hash（哈希）、Set（集合）及Ordered Set/ZSet(有序集合)等五种主要的数据类型。
+<ul><li>BitMaps 位图 布隆过滤器</li> <li>HyperLoglog 超小内存唯一值计数</li> <li>GEO 地理信息定位</li></ul></li> <li>丰富的特性 – Redis还支持慢查询分析、性能测试、Pipeline、事务、Lua自定义命令、Bitmaps、HyperLogLog（2.8.19版本以后提供）、发布/订阅、Geo（3.2版本以后提供）等个性化功能。
+<ul><li>可设置键过期</li> <li>给予发布订阅可实现简单的消息队列</li> <li>通过Lua创建新命令，具有原子性</li> <li>Popeline功能，减少网络开销</li></ul></li> <li>支持数据持久化 - Redis支持数据的持久化，可以将内存中的数据保持在磁盘中，重启的时候可以再次加载进行使用。（RDB/AOF两种方式实现持久化）</li> <li>支持的客户端语言多（基于TCP协议进行通信），比如PHP/Golang/Java/Python等</li> <li>服务器简单
+<ul><li>代码优雅 - （早期单机版核心代码:23000 lines code）</li> <li>采用单线程模型，减少竞争，规避并发问题</li> <li>不依赖操作系统类库（比如libevent），如多路复用Redis自己实现了</li></ul></li> <li>主从复制
+<ul><li>主服务器上的数据可以同步到从服务器上，是高可用及分布式的功能的基础</li></ul></li> <li>高可用/分布式
+<ul><li>高可用 - Redis-Sentinel(v2.8)支持高可用</li> <li>分布式 - Redis-Cluster(v3.0)支持分布式</li></ul></li></ul> <h2 id="redis的典型应用场景"><a href="#redis的典型应用场景" aria-hidden="true" class="header-anchor">#</a> Redis的典型应用场景</h2> <ul><li>缓存系统 - 作为数据库中数据的缓存，应用先访问缓存，如果缓存中有数据，则直接返回；如果没有则从数据库中获取返回，并同时将数据存入缓存，方便下次读取</li> <li>计数器 - 比如微博的转发数、评论数</li> <li>消息队列系统</li> <li>排行榜 - 有序集合</li> <li>社交网络</li> <li>实时系统 - 布隆过滤器（Bitmap）实现实时的垃圾邮件处理系统</li></ul> <h2 id="redis的安装"><a href="#redis的安装" aria-hidden="true" class="header-anchor">#</a> Redis的安装</h2> <h3 id="下载并安装"><a href="#下载并安装" aria-hidden="true" class="header-anchor">#</a> 下载并安装</h3> <ul><li><p>在Linux环境下操作，需要安装gcc（yum install gcc-c++）</p> <div class="language-shell line-numbers-mode"><pre class="language-text"><code>wget http://download.redis.io/releases/redis-3.0.7.tar.gz
+tar -zxvf redis-3.0.7.tar.gz
+ln -s redis-3.0.7 redis
+cd redis
+make &amp;&amp; make install
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div></li> <li><p>安装好Redis后，其可执行文件位于/usr/local/bin下，可在任意位置下执行该文件，同时编译成功后，在解压目录src目录下，也有可执行文件：</p> <div class="language-shell line-numbers-mode"><pre class="language-text"><code>[root@test src]# ll | grep redis-
+-rwxr-xr-x. 1 root root 4589163 7月  11 02:56 redis-benchmark
+-rw-rw-r--. 1 root root   28351 1月  25 2016 redis-benchmark.c
+-rw-r--r--. 1 root root   63200 7月  11 02:56 redis-benchmark.o
+-rwxr-xr-x. 1 root root   22225 7月  11 02:56 redis-check-aof
+-rw-rw-r--. 1 root root    6328 1月  25 2016 redis-check-aof.c
+-rw-r--r--. 1 root root   20680 7月  11 02:56 redis-check-aof.o
+-rwxr-xr-x. 1 root root   45435 7月  11 02:56 redis-check-dump
+-rw-rw-r--. 1 root root   22274 1月  25 2016 redis-check-dump.c
+-rw-r--r--. 1 root root   45408 7月  11 02:56 redis-check-dump.o
+-rwxr-xr-x. 1 root root 4698370 7月  11 02:56 redis-cli
+-rw-rw-r--. 1 root root   75872 1月  25 2016 redis-cli.c
+-rw-r--r--. 1 root root  193944 7月  11 02:56 redis-cli.o
+-rwxr-xr-x. 1 root root 6471159 7月  11 02:56 redis-sentinel
+-rwxr-xr-x. 1 root root 6471159 7月  11 02:56 redis-server
+-rwxrwxr-x. 1 root root   60527 1月  25 2016 redis-trib.rb
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div></li></ul> <h3 id="可执行文件说明"><a href="#可执行文件说明" aria-hidden="true" class="header-anchor">#</a> 可执行文件说明</h3> <table><thead><tr><th style="text-align:left;">文件名</th> <th style="text-align:left;">作用</th></tr></thead> <tbody><tr><td style="text-align:left;">redis-server</td> <td style="text-align:left;">Redis服务器</td></tr> <tr><td style="text-align:left;">redis-cli</td> <td style="text-align:left;">Redis命令行客户端</td></tr> <tr><td style="text-align:left;">redis-benchmark</td> <td style="text-align:left;">Redis性能测试</td></tr> <tr><td style="text-align:left;">redis-check-aof</td> <td style="text-align:left;">AOF文件修复工具</td></tr> <tr><td style="text-align:left;">redis-check-dump</td> <td style="text-align:left;">RDB文件修复工具</td></tr> <tr><td style="text-align:left;">redis-sentinel</td> <td style="text-align:left;">Sentinel服务器(2.8以后）</td></tr></tbody></table> <h3 id="三种启动方式"><a href="#三种启动方式" aria-hidden="true" class="header-anchor">#</a> 三种启动方式</h3> <ol><li>最简单启动：
+<ul><li>redis安装编译后直接运行bin/redis-server，使用默认配置启动，默认端口为6379</li> <li>ps -ef|grep redis (查看redis进程）</li> <li>netstat -antpl|grep redis（查看redis所占用的端口）</li> <li>redis-cli -h ip -p port ping（使用Redis命令行客户端连接服务器，指定ip和port，如果不指定则为默认值localhost:6379，并运行ping命令）（使用exit可退出命令行客户端）<div class="language-shell line-numbers-mode"><pre class="language-text"><code>[root@test redis]# /usr/local/bin/redis-cli -h 127.0.0.1 -p 6379
+127.0.0.1:6379&gt; ping
+PONG
+127.0.0.1:6379&gt; set hello world
+OK
+127.0.0.1:6379&gt; get hello
+&quot;world&quot;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div></li> <li>图中用&quot;ping&quot;命令测试，当返回&quot;pong&quot;时，说明连接成功，并set值（string类型），key为&quot;hello&quot;，value为&quot;world&quot;，get hello则返回其value</li></ul></li> <li>动态参数启动：
+<ul><li>运行redis-server --port 6380 (指定启动端口为6380)</li></ul></li> <li>配置文件启动：
+<ul><li>运行redis-server configFile （使用配置文件的方式启动）</li></ul></li></ol> <h3 id="三种启动方式的比较"><a href="#三种启动方式的比较" aria-hidden="true" class="header-anchor">#</a> 三种启动方式的比较</h3> <ul><li>生产环境建议选择配置文件启动</li> <li>单机多实例配置文件可以使用端口号区分开</li></ul> <h3 id="停止redis"><a href="#停止redis" aria-hidden="true" class="header-anchor">#</a> 停止redis</h3> <ul><li>运行redis-cli -p 6379 shutdown （停止在此端口运行的Redis，默认端口为6379）<div class="language-shell line-numbers-mode"><pre class="language-text"><code>[root@test redis]# redis-cli -p 6379 shutdown
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div>日志打印出：<div class="language-shell line-numbers-mode"><pre class="language-text"><code>33184:M 11 Jul 08:24:13.412 # User requested shutdown...
+33184:M 11 Jul 08:24:13.412 * Saving the final RDB snapshot before exiting.
+33184:M 11 Jul 08:24:13.425 * DB saved on disk
+33184:M 11 Jul 08:24:13.425 # Redis is now ready to exit, bye bye...
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div></li> <li>shutdown有一个参数，代表是否在关闭Redis前，生成持久化文件：<div class="language- line-numbers-mode"><pre class="language-text"><code>redis-cli shutdown nosave|save
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div></li> <li>还可以通过kill进程号的方式关闭redis服务，但是不能通过kill -9强制杀死redis的服务。如果强制杀死redis服务不会进行持久化操作，也不会对缓冲区资源优雅关闭，还可能丢失数据。</li></ul> <h2 id="redis客户端及常用配置"><a href="#redis客户端及常用配置" aria-hidden="true" class="header-anchor">#</a> Redis客户端及常用配置</h2> <ol><li>Redis客户端返回值
+<ol><li>状态回复：<div class="language-shell line-numbers-mode"><pre class="language-text"><code>127.0.0.1:6379&gt; ping
+PONG
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div></li> <li>错误回复：<div class="language-shell line-numbers-mode"><pre class="language-text"><code>127.0.0.1:6379&gt; hget hello field
+(error) WRONGTYPE Operation against a key holding the wrong kind of value
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div></li> <li>整数回复：<div class="language- line-numbers-mode"><pre class="language-text"><code>127.0.0.1:6379&gt; set index 0
+OK
+127.0.0.1:6379&gt; incr index
+(integer) 1
+127.0.0.1:6379&gt; decr index
+(integer) 0
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div></li> <li>字符串回复：<div class="language- line-numbers-mode"><pre class="language-text"><code>127.0.0.1:6379&gt; set hello world
+OK
+127.0.0.1:6379&gt; get hello
+&quot;world&quot;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div></li> <li>多行字符串回复：<div class="language-shell line-numbers-mode"><pre class="language-text"><code>127.0.0.1:6379&gt; mset hello world hi redis
+OK
+127.0.0.1:6379&gt; mget hello hi
+1) &quot;world&quot;
+2) &quot;redis&quot;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div></li></ol></li> <li>Redis常用配置
+<ol><li>daemonize：是否以守护进程的方式启动Redis，默认为no</li> <li>port：Redis对外的端口，使用单机多实例配置启动时必须要配置端口号，否则会冲突，默认端口号为6379</li> <li>logfile：指定Redis的系统日志的文件名</li> <li>dir：指定Redis的工作目录的目录名字<div class="language-shell line-numbers-mode"><pre class="language-text"><code>daemonize yes
+port 6380
+logfile &quot;6380.log&quot;
+dir ./ 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div></li> <li>其他如RDB config、AOF config、slow Log config、maxMemory等</li> <li>查看配置信息：在Redis客户端命令行中输入config get *，查看配置信息，key-value形式，总共130行共65个配置：<div class="language-shell line-numbers-mode"><pre class="language-text"><code>127.0.0.1:6379&gt; config get *
+1) &quot;dbfilename&quot;
+2) &quot;dump.rdb&quot;
+3) &quot;requirepass&quot;
+4) &quot;&quot;
+5) &quot;masterauth&quot;
+6) &quot;&quot;
+7) &quot;unixsocket&quot;
+8) &quot;&quot;
+9) &quot;logfile&quot;
+10) &quot;&quot;
+11) &quot;pidfile&quot;
+12) &quot;/var/run/redis.pid&quot;
+13) &quot;maxmemory&quot;
+14) &quot;0&quot;
+15) &quot;maxmemory-samples&quot;
+16) &quot;5&quot;
+17) &quot;timeout&quot;
+18) &quot;0&quot;
+19) &quot;tcp-keepalive&quot;
+20) &quot;0&quot;
+21) &quot;auto-aof-rewrite-percentage&quot;
+22) &quot;100&quot;
+23) &quot;auto-aof-rewrite-min-size&quot;
+24) &quot;67108864&quot;
+25) &quot;hash-max-ziplist-entries&quot;
+26) &quot;512&quot;
+27) &quot;hash-max-ziplist-value&quot;
+28) &quot;64&quot;
+29) &quot;list-max-ziplist-entries&quot;
+30) &quot;512&quot;
+31) &quot;list-max-ziplist-value&quot;
+32) &quot;64&quot;
+33) &quot;set-max-intset-entries&quot;
+34) &quot;512&quot;
+35) &quot;zset-max-ziplist-entries&quot;
+36) &quot;128&quot;
+37) &quot;zset-max-ziplist-value&quot;
+38) &quot;64&quot;
+39) &quot;hll-sparse-max-bytes&quot;
+40) &quot;3000&quot;
+41) &quot;lua-time-limit&quot;
+42) &quot;5000&quot;
+43) &quot;slowlog-log-slower-than&quot;
+44) &quot;10000&quot;
+45) &quot;latency-monitor-threshold&quot;
+46) &quot;0&quot;
+47) &quot;slowlog-max-len&quot;
+48) &quot;128&quot;
+49) &quot;port&quot;
+50) &quot;6379&quot;
+51) &quot;tcp-backlog&quot;
+52) &quot;511&quot;
+53) &quot;databases&quot;
+54) &quot;16&quot;
+55) &quot;repl-ping-slave-period&quot;
+56) &quot;10&quot;
+57) &quot;repl-timeout&quot;
+58) &quot;60&quot;
+59) &quot;repl-backlog-size&quot;
+60) &quot;1048576&quot;
+61) &quot;repl-backlog-ttl&quot;
+62) &quot;3600&quot;
+63) &quot;maxclients&quot;
+64) &quot;10000&quot;
+65) &quot;watchdog-period&quot;
+66) &quot;0&quot;
+67) &quot;slave-priority&quot;
+68) &quot;100&quot;
+69) &quot;min-slaves-to-write&quot;
+70) &quot;0&quot;
+71) &quot;min-slaves-max-lag&quot;
+72) &quot;10&quot;
+73) &quot;hz&quot;
+74) &quot;10&quot;
+75) &quot;cluster-node-timeout&quot;
+76) &quot;15000&quot;
+77) &quot;cluster-migration-barrier&quot;
+78) &quot;1&quot;
+79) &quot;cluster-slave-validity-factor&quot;
+80) &quot;10&quot;
+81) &quot;repl-diskless-sync-delay&quot;
+82) &quot;5&quot;
+83) &quot;cluster-require-full-coverage&quot;
+84) &quot;yes&quot;
+85) &quot;no-appendfsync-on-rewrite&quot;
+86) &quot;no&quot;
+87) &quot;slave-serve-stale-data&quot;
+88) &quot;yes&quot;
+89) &quot;slave-read-only&quot;
+90) &quot;yes&quot;
+91) &quot;stop-writes-on-bgsave-error&quot;
+92) &quot;yes&quot;
+93) &quot;daemonize&quot;
+94) &quot;no&quot;
+95) &quot;rdbcompression&quot;
+96) &quot;yes&quot;
+97) &quot;rdbchecksum&quot;
+98) &quot;yes&quot;
+99) &quot;activerehashing&quot;
+100) &quot;yes&quot;
+101) &quot;repl-disable-tcp-nodelay&quot;
+102) &quot;no&quot;
+103) &quot;repl-diskless-sync&quot;
+104) &quot;no&quot;
+105) &quot;aof-rewrite-incremental-fsync&quot;
+106) &quot;yes&quot;
+107) &quot;aof-load-truncated&quot;
+108) &quot;yes&quot;
+109) &quot;appendonly&quot;
+110) &quot;no&quot;
+111) &quot;dir&quot;
+112) &quot;/opt/software/redis-3.0.7/src&quot;
+113) &quot;maxmemory-policy&quot;
+114) &quot;noeviction&quot;
+115) &quot;appendfsync&quot;
+116) &quot;everysec&quot;
+117) &quot;save&quot;
+118) &quot;3600 1 300 100 60 10000&quot;
+119) &quot;loglevel&quot;
+120) &quot;notice&quot;
+121) &quot;client-output-buffer-limit&quot;
+122) &quot;normal 0 0 0 slave 268435456 67108864 60 pubsub 33554432 8388608 60&quot;
+123) &quot;unixsocketperm&quot;
+124) &quot;0&quot;
+125) &quot;slaveof&quot;
+126) &quot;&quot;
+127) &quot;notify-keyspace-events&quot;
+128) &quot;&quot;
+129) &quot;bind&quot;
+130) &quot;&quot;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br><span class="line-number">114</span><br><span class="line-number">115</span><br><span class="line-number">116</span><br><span class="line-number">117</span><br><span class="line-number">118</span><br><span class="line-number">119</span><br><span class="line-number">120</span><br><span class="line-number">121</span><br><span class="line-number">122</span><br><span class="line-number">123</span><br><span class="line-number">124</span><br><span class="line-number">125</span><br><span class="line-number">126</span><br><span class="line-number">127</span><br><span class="line-number">128</span><br><span class="line-number">129</span><br><span class="line-number">130</span><br><span class="line-number">131</span><br></div></div></li></ol></li> <li>(示例)采用不同的配置文件启动多个Redis，分别以6381、6382端口:
+<ol><li>以原始文件redis.conf为模本修改对应的配置文件<div class="language-shell line-numbers-mode"><pre class="language-text"><code>[root@test redis]# cat redis.conf | grep -v &quot;#&quot; | grep -v &quot;^$&quot; &gt; redis.6381.conf
+[root@test redis]# cat redis.conf | grep -v &quot;#&quot; | grep -v &quot;^$&quot; &gt; redis.6382.conf 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div></li> <li>分别修改redis.6381.conf、redis.6382.conf<div class="language-shell line-numbers-mode"><pre class="language-text"><code>daemonize yes
+port 6381
+logfile &quot;6381.log&quot;
+dir &quot;/opt/software/redis-3.0.7/data&quot; 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><div class="language-shell line-numbers-mode"><pre class="language-text"><code>daemonize yes
+port 6382
+logfile &quot;6382.log&quot;
+dir &quot;/opt/software/redis-3.0.7/data&quot; 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div></li> <li>创建data目录，否则启动报错<div class="language-shell line-numbers-mode"><pre class="language-text"><code>[root@test redis]# redis-server redis.6381.conf
+33283:C 11 Jul 08:49:55.232 # Can't chdir to '/opt/software/redis-3.0.7/data': No such file or directory
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><div class="language-shell line-numbers-mode"><pre class="language-text"><code>[root@test redis]# mkdir data
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div></li> <li>启动两个Redis进程
+<ol><li>启动端口号为6381的redis:<div class="language-shell line-numbers-mode"><pre class="language-text"><code>[root@test redis]# redis-server redis.6381.conf
+[root@test redis]# ps -ef|grep redis
+root      33302      1  0 08:52 ?        00:00:00 redis-server *:6381
+root      33306   2574  0 08:52 pts/0    00:00:00 grep redis
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div></li> <li>日志记录在6381.log文件中:<img src="/vuepressblog/assets/img/15.72a8413a.png" alt="查看6381日志"></li> <li>启动端口号为6382的redis:<img src="/vuepressblog/assets/img/16.de4d36d0.png" alt="6382启动"></li></ol></li></ol></li></ol></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">上次更新: </span> <span class="time">2019-7-13 2:33:33 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/vuepressblog/" class="prev router-link-active">
+          回到主页
+        </a></span> <span class="next"><a href="/vuepressblog/后端/Redis/Redis从入门到高可用分布式实践/API的理解和使用/API的理解和使用.html">
+          API的理解和使用
+        </a>
+        →
+      </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/vuepressblog/assets/js/app.c1dcb57d.js" defer></script><script src="/vuepressblog/assets/js/2.faab20df.js" defer></script><script src="/vuepressblog/assets/js/5.1ca22897.js" defer></script>
+  </body>
+</html>
